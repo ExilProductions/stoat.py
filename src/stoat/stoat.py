@@ -1,0 +1,2 @@
+class StoatClient():
+    pass

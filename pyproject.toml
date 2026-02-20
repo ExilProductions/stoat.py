@@ -1,0 +1,83 @@
+[build-system]
+requires = ["setuptools>=69.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stoat.py"
+version = "0.1.0"
+description = "Typed Python API client SDK for Stoat"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [
+  { name = "Exil Productions", email = "exil@exil.dev" }
+]
+keywords = ["api", "sdk", "client", "httpx", "pydantic"]
+
+dependencies = [
+  "httpx>=0.27.0",
+  "pydantic>=2.6.0",
+  "tenacity>=8.2.3",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0.0",
+  "pytest-asyncio>=0.23.5",
+  "ruff>=0.3.0",
+  "mypy>=1.8.0",
+  "pre-commit>=3.6.0",
+  "build>=1.1.1",
+  "twine>=5.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/ExilProductions/stoat.py"
+Repository = "https://github.com/ExilProductions/stoat.py"
+Issues = "https://github.com/ExilProductions/stoat.py/issues"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["spacebar_py*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "-ra -q"
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+warn_unused_configs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+disallow_any_generics = true
+disallow_subclassing_any = true
+check_untyped_defs = true
+no_implicit_optional = true
+strict_optional = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+select = ["E", "F", "I", "UP", "B", "C4", "SIM"]
+ignore = ["E501"]
+
+[tool.ruff.isort]
+known-first-party = ["your_sdk"]
+force-single-line = true
+lines-after-imports = 2
+
+[tool.ruff.per-file-ignores]
+"tests/*" = ["S101"]
+
+[tool.coverage.run]
+branch = true
+source = ["your_sdk"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true

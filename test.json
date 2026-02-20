@@ -1,0 +1,213 @@
+{
+  "title": "Server Configuration",
+  "type": "object",
+  "required": [
+    "app",
+    "build",
+    "features",
+    "revolt",
+    "vapid",
+    "ws"
+  ],
+  "properties": {
+    "revolt": {
+      "description": "Revolt API Version",
+      "type": "string"
+    },
+    "features": {
+      "description": "Features enabled on this Revolt node",
+      "allOf": [
+        {
+          "title": "Feature Configuration",
+          "type": "object",
+          "required": [
+            "autumn",
+            "captcha",
+            "email",
+            "invite_only",
+            "january",
+            "livekit"
+          ],
+          "properties": {
+            "captcha": {
+              "description": "hCaptcha configuration",
+              "allOf": [
+                {
+                  "title": "hCaptcha Configuration",
+                  "type": "object",
+                  "required": [
+                    "enabled",
+                    "key"
+                  ],
+                  "properties": {
+                    "enabled": {
+                      "description": "Whether captcha is enabled",
+                      "type": "boolean"
+                    },
+                    "key": {
+                      "description": "Client key used for solving captcha",
+                      "type": "string"
+                    }
+                  }
+                }
+              ]
+            },
+            "email": {
+              "description": "Whether email verification is enabled",
+              "type": "boolean"
+            },
+            "invite_only": {
+              "description": "Whether this server is invite only",
+              "type": "boolean"
+            },
+            "autumn": {
+              "description": "File server service configuration",
+              "allOf": [
+                {
+                  "title": "Generic Service Configuration",
+                  "type": "object",
+                  "required": [
+                    "enabled",
+                    "url"
+                  ],
+                  "properties": {
+                    "enabled": {
+                      "description": "Whether the service is enabled",
+                      "type": "boolean"
+                    },
+                    "url": {
+                      "description": "URL pointing to the service",
+                      "type": "string"
+                    }
+                  }
+                }
+              ]
+            },
+            "january": {
+              "description": "Proxy service configuration",
+              "allOf": [
+                {
+                  "title": "Generic Service Configuration",
+                  "type": "object",
+                  "required": [
+                    "enabled",
+                    "url"
+                  ],
+                  "properties": {
+                    "enabled": {
+                      "description": "Whether the service is enabled",
+                      "type": "boolean"
+                    },
+                    "url": {
+                      "description": "URL pointing to the service",
+                      "type": "string"
+                    }
+                  }
+                }
+              ]
+            },
+            "livekit": {
+              "description": "Voice server configuration",
+              "allOf": [
+                {
+                  "title": "Voice Server Configuration",
+                  "type": "object",
+                  "required": [
+                    "enabled",
+                    "nodes"
+                  ],
+                  "properties": {
+                    "enabled": {
+                      "description": "Whether voice is enabled",
+                      "type": "boolean"
+                    },
+                    "nodes": {
+                      "description": "All livekit nodes",
+                      "type": "array",
+                      "items": {
+                        "title": "Information about a livekit node",
+                        "type": "object",
+                        "required": [
+                          "lat",
+                          "lon",
+                          "name",
+                          "public_url"
+                        ],
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "lat": {
+                            "type": "number",
+                            "format": "double"
+                          },
+                          "lon": {
+                            "type": "number",
+                            "format": "double"
+                          },
+                          "public_url": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "ws": {
+      "description": "WebSocket URL",
+      "type": "string"
+    },
+    "app": {
+      "description": "URL pointing to the client serving this node",
+      "type": "string"
+    },
+    "vapid": {
+      "description": "Web Push VAPID public key",
+      "type": "string"
+    },
+    "build": {
+      "description": "Build information",
+      "allOf": [
+        {
+          "title": "Build Information",
+          "type": "object",
+          "required": [
+            "commit_sha",
+            "commit_timestamp",
+            "origin_url",
+            "semver",
+            "timestamp"
+          ],
+          "properties": {
+            "commit_sha": {
+              "description": "Commit Hash",
+              "type": "string"
+            },
+            "commit_timestamp": {
+              "description": "Commit Timestamp",
+              "type": "string"
+            },
+            "semver": {
+              "description": "Git Semver",
+              "type": "string"
+            },
+            "origin_url": {
+              "description": "Git Origin URL",
+              "type": "string"
+            },
+            "timestamp": {
+              "description": "Build Timestamp",
+              "type": "string"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
