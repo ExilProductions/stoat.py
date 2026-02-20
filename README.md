@@ -31,7 +31,7 @@ pip install stoat.py
 Or install directly from source:
 
 ```bash
-git clone https://github.com/yourusername/stoat.py.git
+git clone https://github.com/ExilProductions/stoat.py.git
 cd stoat.py
 pip install .
 ```
